@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Patient</title>
+</head>
+<body>
+<form action="/appointments/add" method="post">
+    <input type="date" name="date_time"><br>
+    <select name="patient" >
+        <option th:each="patient : ${patients}"
+                th:value="${patient.id}"
+                th:text="${patient.name + ' ' + patient.surname}">
+        </option>
+    </select><br>
+    <select name="doctor" >
+        <option th:each="doctor : ${doctors}"
+                th:value="${doctor.id}"
+                th:text="${doctor.name + ' ' + doctor.surname}">
+        </option>
+    </select><br>
+    <input type="submit" value="create">
+</form>
+</body>
+</html>

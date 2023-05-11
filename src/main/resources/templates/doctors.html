@@ -1,0 +1,34 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctors</title>
+</head>
+<body>
+<h1>Doctors</h1>
+<a href="/" >Beck</a><br>
+<a href="/doctors/add" >Create doctor</a>
+<table border="1px">
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>surname</th>
+        <th>email</th>
+        <th>specialty</th>
+        <th>phone_number</th>
+        <th>profile_pic</th>
+        <th>action</th>
+    </tr>
+    <tr th:each="doctor : ${doctors}">
+        <td th:text="${doctor.id}"></td>
+        <td th:text="${doctor.name}"></td>
+        <td th:text="${doctor.surname}"></td>
+        <td th:text="${doctor.email}"></td>
+        <td th:text="${doctor.specialty}"></td>
+        <td th:text="${doctor.phone_number}"></td>
+        <td> <img th:if="${doctor.getProfilePic() != null}" th:src="@{/getImage(profilePic=${doctor.getProfilePic()})}" width="100"/></td>
+        <td><a th:href="@{/doctors/remove(id =${doctor.getId()})}">Remove</a></td>
+    </tr>
+</table>
+</body>
+</html>
