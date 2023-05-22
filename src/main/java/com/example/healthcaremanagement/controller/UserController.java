@@ -1,6 +1,7 @@
 package com.example.healthcaremanagement.controller;
 
 import com.example.healthcaremanagement.entity.User;
+import com.example.healthcaremanagement.entity.UserType;
 import com.example.healthcaremanagement.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -31,11 +32,16 @@ public class UserController {
             String password = user.getPassword();
             String encodedPassword = passwordEncoder.encode(password);
             user.setPassword(encodedPassword);
+            user.setUserType(UserType.USER);
             userRepository.save(user);
 
         }
         return "redirect:/";
 
+    }
+    @GetMapping("/admin")
+    public String adminPage(){
+        return "admin";
     }
 
 

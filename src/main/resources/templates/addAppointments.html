@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
     <title>Add Patient</title>
 </head>
 <body>
+<div th:include="fragment/header::headrFragment"></div>
 <form action="/appointments/add" method="post">
     <input type="date" name="date_time"><br>
     <select name="patient" >
@@ -21,5 +22,6 @@
     </select><br>
     <input type="submit" value="create">
 </form>
+<div th:include="fragment/header::footerFragment"></div>
 </body>
 </html>

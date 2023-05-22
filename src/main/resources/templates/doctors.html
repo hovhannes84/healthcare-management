@@ -5,7 +5,9 @@
     <title>Doctors</title>
 </head>
 <body>
+
 <h1>Doctors</h1>
+<div th:include="fragment/header::headrFragment"></div>
 <a href="/" >Beck</a><br>
 <a href="/doctors/add" >Create doctor</a>
 <table border="1px">
@@ -30,5 +32,6 @@
         <td><a th:href="@{/doctors/remove(id =${doctor.getId()})}">Remove</a></td>
     </tr>
 </table>
+<div th:include="fragment/header::footerFragment"></div>
 </body>
 </html>

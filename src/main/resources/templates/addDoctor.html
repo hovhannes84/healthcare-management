@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Add Doctor</title>
 </head>
 <body>
+<div th:include="fragment/header::headrFragment"></div>
 <form action="/doctors/add" method="post" enctype="multipart/form-data">
 <input type="text" name="name" value="name"><br>
 <input type="text" name="surname" value="surname" ><br>
@@ -14,5 +15,6 @@
 <input type="file" name="image" ><br>
 <input type="submit" value="create">
 </form>
+<div th:include="fragment/header::footerFragment"></div>
 </body>
 </html>

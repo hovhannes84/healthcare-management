@@ -19,19 +19,32 @@ public class SpringSecurityConfig {
     @Autowired
     private UserDetailsService userDetailsService;
 
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.GET,"/").permitAll()
+//                .requestMatchers(HttpMethod.GET,"/customLogin").permitAll()
                 .requestMatchers("/user/register").permitAll()
+                .requestMatchers("/doctors/**").hasAnyAuthority("ADMIN", "USER")
+                .requestMatchers("/user/admin").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin();
-        return httpSecurity.build();
+                .formLogin()
+                .loginPage("/customLogin")
+                .defaultSuccessUrl("/customSuccessLogin")
+                .loginProcessingUrl("/login")
+                .permitAll()
+                .and()
+                .logout()
+                .logoutSuccessUrl("/")
+                .permitAll();
 
+        return httpSecurity.build();
     }
+
+
+
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
